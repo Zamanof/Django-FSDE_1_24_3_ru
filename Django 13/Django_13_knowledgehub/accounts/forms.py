@@ -3,10 +3,48 @@ from django import forms
 
 
 class RegisterForm(forms.Form):
-    username = forms.CharField(label="User Name", min_length=3, max_length=50, widget=forms.TextInput(attrs={"class": "form-control"}))
-    email = forms.EmailField(label="Email", widget=forms.TextInput(attrs={"class": "form-control"}))
-    password = forms.CharField(label="Password", widget=forms.PasswordInput(attrs={"class": "form-control"}))
-    confirm_password = forms.CharField(label="Confirm Password", widget=forms.PasswordInput(attrs={"class": "form-control"}))
+    username = forms.CharField(
+        label="Username",
+        min_length=3,
+        max_length=50,
+        widget=forms.TextInput(
+            attrs={
+                "class": "form-control",
+                "placeholder": "Choose a username",
+                "autocomplete": "username",
+            }
+        ),
+    )
+    email = forms.EmailField(
+        label="Email",
+        widget=forms.EmailInput(
+            attrs={
+                "class": "form-control",
+                "placeholder": "you@example.com",
+                "autocomplete": "email",
+            }
+        ),
+    )
+    password = forms.CharField(
+        label="Password",
+        widget=forms.PasswordInput(
+            attrs={
+                "class": "form-control",
+                "placeholder": "Create a strong password",
+                "autocomplete": "new-password",
+            }
+        ),
+    )
+    confirm_password = forms.CharField(
+        label="Confirm password",
+        widget=forms.PasswordInput(
+            attrs={
+                "class": "form-control",
+                "placeholder": "Repeat your password",
+                "autocomplete": "new-password",
+            }
+        ),
+    )
 
     def clean(self):
         cleaned_data = super().clean()
@@ -17,5 +55,23 @@ class RegisterForm(forms.Form):
         return cleaned_data
 
 class LoginForm(forms.Form):
-    username_or_email = forms.CharField(label="User Name or Email", widget=forms.TextInput(attrs={"class": "form-control"}))
-    password = forms.CharField(label="Password", widget=forms.PasswordInput(attrs={"class": "form-control"}))
+    username_or_email = forms.CharField(
+        label="Username or email",
+        widget=forms.TextInput(
+            attrs={
+                "class": "form-control",
+                "placeholder": "Username or email",
+                "autocomplete": "username",
+            }
+        ),
+    )
+    password = forms.CharField(
+        label="Password",
+        widget=forms.PasswordInput(
+            attrs={
+                "class": "form-control",
+                "placeholder": "Password",
+                "autocomplete": "current-password",
+            }
+        ),
+    )

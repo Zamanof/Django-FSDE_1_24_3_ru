@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+{% block title %}Knowledge Hub - Delete Note{% endblock %}
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-lg-7 col-xl-6">
+        <div class="card border-0 shadow-sm">
+            <div class="card-body p-4 p-md-5">
+                <h1 class="h3 mb-3 text-danger">Delete Note</h1>
+                <p class="mb-4">Are you sure you want to delete <strong>"{{ note.title }}"</strong>?</p>
+
+                <form method="post" class="d-flex flex-wrap gap-2">
+                    {% csrf_token %}
+                    <button type="submit" class="btn btn-danger">Yes, Delete</button>
+                    <a href="{% url 'notes:note_detail' note.id %}" class="btn btn-outline-secondary">Cancel</a>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
