@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+{% block title %} Knowledge Hub - Home page{% endblock %}
+{% block content %}
+
+<section class="py-2 py-md-4">
+    <div class="row justify-content-center">
+        <div class="col-lg-10 col-xl-9">
+            <div class="card border-0 shadow-lg rounded-4 overflow-hidden">
+                <div class="card-body p-4 p-md-5">
+                    <div class="text-center mb-5">
+                        <h1 class="display-5 fw-bold text-primary mb-3">Knowledge Hub</h1>
+                        <p class="lead text-muted mb-0">Welcome to the project management and notes platform</p>
+                    </div>
+
+                    <div class="row g-3">
+                        <div class="col-md-6 col-lg-4">
+                            <a href="/contact/" class="btn btn-outline-primary w-100 py-3">Contact Feedback</a>
+                        </div>
+                        <div class="col-md-6 col-lg-4">
+                            <a href="/accounts/register/" class="btn btn-success w-100 py-3">Register</a>
+                        </div>
+                        <div class="col-md-6 col-lg-4">
+                            <a href="/accounts/login/" class="btn btn-warning w-100 py-3">Login</a>
+                        </div>
+                        <div class="col-md-6 col-lg-4">
+                            <a href="/accounts/dashboard/" class="btn btn-info text-white w-100 py-3">Cabinet</a>
+                        </div>
+                        <div class="col-md-6 col-lg-4">
+                            <a href="{% url 'notes:note_create' %}" class="btn btn-dark w-100 py-3">Create Note</a>
+                        </div>
+                        <div class="col-md-6 col-lg-4">
+                            <a href="{% url 'notes:notes_list' %}" class="btn btn-secondary w-100 py-3">Notes List</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

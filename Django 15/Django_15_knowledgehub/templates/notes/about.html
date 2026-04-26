@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+
+{% block title %}
+    Knowledge Hub - About
+{% endblock %}
+
+{% block content %}
+
+<div class="row justify-content-center">
+    <div class="col-lg-9 col-xl-8">
+        <div class="card border-0 shadow-sm rounded-4">
+            <div class="card-body p-4 p-md-5">
+                <h1 class="display-6 fw-bold text-primary mb-3">{{ project_name }}</h1>
+                <p class="lead text-muted mb-4">Educational Django platform for managing notes and learning workflows.</p>
+
+                <div class="row g-3">
+                    <div class="col-md-6">
+                        <div class="bg-light rounded-3 p-3 h-100">
+                            <h2 class="h6 text-uppercase text-muted mb-2">Project Type</h2>
+                            <p class="mb-0 fw-semibold">Training Project</p>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="bg-light rounded-3 p-3 h-100">
+                            <h2 class="h6 text-uppercase text-muted mb-2">Author</h2>
+                            <p class="mb-0 fw-semibold">{{ author }}</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="d-flex gap-2 mt-4">
+                    <a href="{% url 'notes:home' %}" class="btn btn-primary">Back Home</a>
+                    <a href="{% url 'notes:notes_list' %}" class="btn btn-outline-secondary">View Notes</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
