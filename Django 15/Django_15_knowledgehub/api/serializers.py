@@ -49,6 +49,7 @@ class NoteSerializer(serializers.ModelSerializer):
     def validate_title(self, attrs):
         if len(attrs.strip()) < 3:
             raise serializers.ValidationError("Title is too short. Must be at least 3 characters long")
+        return attrs
 
 
 

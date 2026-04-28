@@ -12,7 +12,6 @@ class PingAPIView(APIView):
     def get(self, request):
         return Response({'message': 'pong'})
 
-
 class DemoNotesAPIView(APIView):
     notes = [
         {
