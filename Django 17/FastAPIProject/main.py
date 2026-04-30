@@ -1,4 +1,4 @@
-from fastapi import FastAPI, Query, Form
+from fastapi import FastAPI, Query, Form, Depends
 from fastapi.encoders import jsonable_encoder
 from fastapi.responses import (
 FileResponse,
@@ -7,15 +7,21 @@ JSONResponse,
 Response,
 RedirectResponse
 )
-
+from pydantic import BaseModel
+from fastapi.staticfiles import StaticFiles
 
 app = FastAPI()
 
+app.mount("/static", StaticFiles(directory="static"), name="static")
+
+class User(BaseModel):
+    email: str
+    password: str
 
 @app.get("/")
 async def root():
     # return {"message": "Hello World"}
-    return FileResponse("public/index.html")
+    return FileResponse("static/index.html")
 
 
 # @app.get("/hello/{name}")
@@ -24,7 +30,7 @@ async def root():
 
 @app.get("/file", response_class=FileResponse)
 async def root_html():
-    return "public/index.html"
+    return "static/index.html"
 
 
 @app.get("/get-image")
@@ -59,6 +65,15 @@ async def get_json():
 async def get_text():
     html = "<h1 style='color:turquoise;'>Назаров Рамин Намиг</h1>"
     return Response(content=html, media_type="text/plain")
+
+def as_user_from_form(
+        email: str=Form(...),
+        password: str=Form(...))->User:
+    return User(email=email, password=password)
+
+@app.post("/login")
+async def login(user: User=Depends(as_user_from_form)):
+    return {"message": f"{user.email} {user.password}"}
 
 
 
